@@ -1,4 +1,4 @@
-name: My-application-CI
+name: My NODE JS-application-CI
 
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ on:
       
   # push:
   #   branches:
-  #     - main
+  #     - master
 
 jobs:
   build:
@@ -33,7 +33,7 @@ jobs:
     - name: Run tests
       run: npm run test
       
-    - name: Login to GitHub Container Registry
+    - name: Login to Docker Container Registry
       uses: docker/login-action@v3
       with:
         # registry: ghcr.io
@@ -45,4 +45,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ secrets.DOCKER_USER }}/mynode-app:v${{ inputs.majorversion }}.${{ inputs.minorversion }}.${{  github.run_number }}
+        tags: ${{ secrets.DOCKER_USER }}/mynodetest-app:v${{ inputs.majorversion }}.${{ inputs.minorversion }}.${{  github.run_number }}
